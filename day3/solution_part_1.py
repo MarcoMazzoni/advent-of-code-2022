@@ -15,7 +15,7 @@ class Item:
 
     def get_priority(self) -> int:
         res = self._get_priority_of_lower_case() if self._item.islower() else self._get_priority_of_upper_case()
-        print(self._item, res)
+        # print(self._item, res)
         return res
 
     def _get_priority_of_lower_case(self) -> int:
@@ -36,12 +36,15 @@ def get_score(s: str) -> int:
     return res
 
 
+def get_score_functional(s: str) -> int:
+    return sum(map(lambda item: item.get_priority(), map(Item.from_string, s.splitlines())))
+
+
 if __name__ == '__main__':
     with open("input.txt") as f:
         inp = f.read()
-
     # inp = 'vJrwpWtwJgWrhcsFMMfFFhFp\njqHRNqRjqzjGDLGLrsFMfFZSrLrFZsSL\nPmmdzqPrVvPwwTWBwg\nwMqvLMZHhHMvwLHjbvcjnnSBnvTQFn\nttgJtRGJQctTZtZT\nCrZsJsPPZsGzwwsLwLmpwMDw\n'
     start = time.time_ns()
-    score = get_score(inp)
+    score = get_score_functional(inp)
     print(f'Score computation took: {(time.time_ns() - start) // 1_000_000} ms')
     print('Result:', score)
