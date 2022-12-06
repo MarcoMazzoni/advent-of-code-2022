@@ -15,7 +15,6 @@ class Item:
 
     def get_priority(self) -> int:
         res = self._get_priority_of_lower_case() if self._item.islower() else self._get_priority_of_upper_case()
-        # print(self._item, res)
         return res
 
     def _get_priority_of_lower_case(self) -> int:
